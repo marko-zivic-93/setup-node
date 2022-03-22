@@ -1,0 +1,24 @@
+name: test setup go
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'    
+  push:    
+    branches:
+      - main
+      - releases/*
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
+      
+jobs:
+  local-cache:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Setup Go
+        uses: setup-go@v3
+        with:
+          go-version: "1.18.0"
